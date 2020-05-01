@@ -3,7 +3,7 @@
         {
             "id": "S",
             "weight": "",
-            "previous_shortest": "",
+            "shortest_source": "",
             "edges": [
                 { "destination": "A", "cost": 7 },
                 { "destination": "C", "cost": 6 },
@@ -14,7 +14,7 @@
         {
             "id": "A",
             "weight": "",
-            "previous_shortest": "",
+            "shortest_source": "",
             "edges": [
                 { "destination": "B", "cost": 4 },
                 { "destination": "C", "cost": -2 }
@@ -23,7 +23,7 @@
         {
             "id": "B",
             "weight": "",
-            "previous_shortest": "",
+            "shortest_source": "",
             "edges": [
                 { "destination": "G", "cost": -2 },
                 { "destination": "H", "cost": -4 }
@@ -32,33 +32,33 @@
         {
             "id": "C",
             "weight": "",
-            "previous_shortest": "",
+            "shortest_source": "",
             "edges": [
                 { "destination": "D", "cost": 2 },
-                { "destination": "F", "cost": 1 },
+                { "destination": "F", "cost": 1 }
             ]
         },
         {
             "id": "E",
             "weight": "",
-            "previous_shortest": "",
+            "shortest_source": "",
             "edges": [
                 { "destination": "F", "cost": -2 },
-                { "destination": "H", "cost": 3 },
+                { "destination": "H", "cost": 3 }
             ]
         },
         {
             "id": "F",
             "weight": "",
-            "previous_shortest": "",
+            "shortest_source": "",
             "edges": [
-                { "destination": "D", "cost": 3 },
+                { "destination": "D", "cost": 3 }
             ]
         },
         {
             "id": "G",
             "weight": "",
-            "previous_shortest": "",
+            "shortest_source": "",
             "edges": [
                 { "destination": "I", "cost": -1 }
             ]
@@ -66,7 +66,7 @@
         {
             "id": "H",
             "weight": "",
-            "previous_shortest": "",
+            "shortest_source": "",
             "edges": [
                 { "destination": "G", "cost": 1 }
             ]
@@ -74,11 +74,10 @@
         {
             "id": "I",
             "weight": "",
-            "previous_shortest": "",
+            "shortest_source": "",
             "edges": [
                 { "destination": "H", "cost": 1 }
             ]
         }
     ]
-
 }
