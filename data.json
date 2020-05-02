@@ -39,6 +39,12 @@
             ]
         },
         {
+            "id": "D",
+            "weight": "",
+            "shortest_source": "",
+            "edges": []
+        },
+        {
             "id": "E",
             "weight": "",
             "shortest_source": "",

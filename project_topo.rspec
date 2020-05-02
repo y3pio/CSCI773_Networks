@@ -1,0 +1,232 @@
+<rspec xmlns="http://www.geni.net/resources/rspec/3" xmlns:emulab="http://www.protogeni.net/resources/rspec/ext/emulab/1" xmlns:tour="http://www.protogeni.net/resources/rspec/ext/apt-tour/1" xmlns:jacks="http://www.protogeni.net/resources/rspec/ext/jacks/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.geni.net/resources/rspec/3    http://www.geni.net/resources/rspec/3/request.xsd" type="request">
+<node xmlns="http://www.geni.net/resources/rspec/3" client_id="bellman-ford">
+        <icon xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" url="https://portal.geni.net/images/Xen-VM.svg"/>
+        <sliver_type xmlns="http://www.geni.net/resources/rspec/3" name="emulab-xen">
+            <disk_image xmlns="http://www.geni.net/resources/rspec/3" name="urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD"/>
+        </sliver_type>
+        <services xmlns="http://www.geni.net/resources/rspec/3">
+            
+            
+            
+        
+
+
+
+
+
+<execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo apt-get update; sudo apt-get -y install mtr" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo wget -O /etc/profile.d/link-status-message.sh https://git.io/vSLZj; sudo chmod a+x /etc/profile.d/link-status-message.sh" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="wget -O - https://git.io/vSLc2 | bash; wget -O - https://git.io/vSC5r | bash" shell="/bin/sh"/></services>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-7">
+            <ip address="10.10.4.2" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-8">
+            <ip address="10.10.5.1" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="Site 1"/>
+    </node><node xmlns="http://www.geni.net/resources/rspec/3" client_id="knuth">
+        <icon xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" url="https://portal.geni.net/images/Xen-VM.svg"/>
+        <sliver_type xmlns="http://www.geni.net/resources/rspec/3" name="emulab-xen">
+            <disk_image xmlns="http://www.geni.net/resources/rspec/3" name="urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD"/>
+        </sliver_type>
+        <services xmlns="http://www.geni.net/resources/rspec/3">
+            
+            
+            
+        
+
+
+
+
+
+<execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo apt-get update; sudo apt-get -y install mtr" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo wget -O /etc/profile.d/link-status-message.sh https://git.io/vSLZj; sudo chmod a+x /etc/profile.d/link-status-message.sh" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="wget -O - https://git.io/vSLc2 | bash; wget -O - https://git.io/vSC5r | bash" shell="/bin/sh"/></services>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-11">
+            <ip address="10.10.6.2" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-12">
+            <ip address="10.10.7.1" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-15">
+            <ip address="10.10.8.2" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="Site 1"/>
+    </node><node xmlns="http://www.geni.net/resources/rspec/3" client_id="lovelace">
+        <icon xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" url="https://portal.geni.net/images/Xen-VM.svg"/>
+        <sliver_type xmlns="http://www.geni.net/resources/rspec/3" name="emulab-xen">
+            <disk_image xmlns="http://www.geni.net/resources/rspec/3" name="urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD"/>
+        </sliver_type>
+        <services xmlns="http://www.geni.net/resources/rspec/3">
+            
+            
+            
+        
+
+
+
+
+
+<execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo apt-get update; sudo apt-get -y install mtr" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo wget -O /etc/profile.d/link-status-message.sh https://git.io/vSLZj; sudo chmod a+x /etc/profile.d/link-status-message.sh" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="wget -O - https://git.io/vSLc2 | bash; wget -O - https://git.io/vSC5r | bash" shell="/bin/sh"/></services>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-5">
+            <ip address="10.10.3.2" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-6">
+            <ip address="10.10.4.1" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-14">
+            <ip address="10.10.8.1" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="Site 1"/>
+    </node><node xmlns="http://www.geni.net/resources/rspec/3" client_id="baran">
+        <icon xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" url="https://portal.geni.net/images/Xen-VM.svg"/>
+        <sliver_type xmlns="http://www.geni.net/resources/rspec/3" name="emulab-xen">
+            <disk_image xmlns="http://www.geni.net/resources/rspec/3" name="urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD"/>
+        </sliver_type>
+        <services xmlns="http://www.geni.net/resources/rspec/3">
+            
+            
+            
+        
+
+
+
+
+
+<execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo apt-get update; sudo apt-get -y install mtr" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo wget -O /etc/profile.d/link-status-message.sh https://git.io/vSLZj; sudo chmod a+x /etc/profile.d/link-status-message.sh" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="wget -O - https://git.io/vSLc2 | bash; wget -O - https://git.io/vSC5r | bash" shell="/bin/sh"/></services>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-1">
+            <ip address="10.10.1.2" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-9">
+            <ip address="10.10.5.2" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="Site 1"/>
+    </node><node xmlns="http://www.geni.net/resources/rspec/3" client_id="cerf">
+        <icon xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" url="https://portal.geni.net/images/Xen-VM.svg"/>
+        <sliver_type xmlns="http://www.geni.net/resources/rspec/3" name="emulab-xen">
+            <disk_image xmlns="http://www.geni.net/resources/rspec/3" name="urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD"/>
+        </sliver_type>
+        <services xmlns="http://www.geni.net/resources/rspec/3">
+            
+            
+            
+        
+
+
+
+
+
+<execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo apt-get update; sudo apt-get -y install mtr" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo wget -O /etc/profile.d/link-status-message.sh https://git.io/vSLZj; sudo chmod a+x /etc/profile.d/link-status-message.sh" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="wget -O - https://git.io/vSLc2 | bash; wget -O - https://git.io/vSC5r | bash" shell="/bin/sh"/></services>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-0">
+            <ip address="10.10.1.1" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-3">
+            <ip address="10.10.2.2" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-13">
+            <ip address="10.10.7.2" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="Site 1"/>
+    </node><node xmlns="http://www.geni.net/resources/rspec/3" client_id="hopper">
+        <icon xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" url="https://portal.geni.net/images/Xen-VM.svg"/>
+        <sliver_type xmlns="http://www.geni.net/resources/rspec/3" name="emulab-xen">
+            <disk_image xmlns="http://www.geni.net/resources/rspec/3" name="urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD"/>
+        </sliver_type>
+        <services xmlns="http://www.geni.net/resources/rspec/3">
+            
+            
+            
+        
+
+
+
+
+
+<execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo apt-get update; sudo apt-get -y install mtr" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="sudo wget -O /etc/profile.d/link-status-message.sh https://git.io/vSLZj; sudo chmod a+x /etc/profile.d/link-status-message.sh" shell="/bin/sh"/><execute xmlns="http://www.geni.net/resources/rspec/3" command="wget -O - https://git.io/vSLc2 | bash; wget -O - https://git.io/vSC5r | bash" shell="/bin/sh"/></services>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-2">
+            <ip address="10.10.2.1" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-4">
+            <ip address="10.10.3.1" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <interface xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-10">
+            <ip address="10.10.6.1" netmask="255.255.255.0" type="ipv4"/>
+        </interface>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="Site 1"/>
+    </node><link xmlns="http://www.geni.net/resources/rspec/3" client_id="link-0">
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-0"/>
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-1"/>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="undefined"/>
+        
+        
+    
+
+
+
+<property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-0" dest_id="interface-1" capacity="100"/><property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-1" dest_id="interface-0" capacity="100"/></link><link xmlns="http://www.geni.net/resources/rspec/3" client_id="link-1">
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-2"/>
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-3"/>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="undefined"/>
+        
+        
+    
+
+
+
+<property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-2" dest_id="interface-3" capacity="100"/><property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-3" dest_id="interface-2" capacity="100"/></link><link xmlns="http://www.geni.net/resources/rspec/3" client_id="link-2">
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-4"/>
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-5"/>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="undefined"/>
+        
+        
+    
+
+
+
+<property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-4" dest_id="interface-5" capacity="100"/><property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-5" dest_id="interface-4" capacity="100"/></link><link xmlns="http://www.geni.net/resources/rspec/3" client_id="link-3">
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-6"/>
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-7"/>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="undefined"/>
+        
+        
+    
+
+
+
+<property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-6" dest_id="interface-7" capacity="100"/><property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-7" dest_id="interface-6" capacity="100"/></link><link xmlns="http://www.geni.net/resources/rspec/3" client_id="link-4">
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-8"/>
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-9"/>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="undefined"/>
+        
+        
+    
+
+
+
+<property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-8" dest_id="interface-9" capacity="100"/><property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-9" dest_id="interface-8" capacity="100"/></link><link xmlns="http://www.geni.net/resources/rspec/3" client_id="link-5">
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-10"/>
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-11"/>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="undefined"/>
+        
+        
+    
+
+
+
+<property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-10" dest_id="interface-11" capacity="100"/><property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-11" dest_id="interface-10" capacity="100"/></link><link xmlns="http://www.geni.net/resources/rspec/3" client_id="link-6">
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-12"/>
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-13"/>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="undefined"/>
+        
+        
+    
+
+
+
+<property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-12" dest_id="interface-13" capacity="100"/><property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-13" dest_id="interface-12" capacity="100"/></link><link xmlns="http://www.geni.net/resources/rspec/3" client_id="link-7">
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-14"/>
+        <interface_ref xmlns="http://www.geni.net/resources/rspec/3" client_id="interface-15"/>
+        <site xmlns="http://www.protogeni.net/resources/rspec/ext/jacks/1" id="undefined"/>
+        
+        
+    
+
+
+
+<property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-14" dest_id="interface-15" capacity="100"/><property xmlns="http://www.geni.net/resources/rspec/3" source_id="interface-15" dest_id="interface-14" capacity="100"/></link></rspec>

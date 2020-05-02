@@ -1,25 +1,27 @@
-const data = require('./data.json');
+const { getNetworkData, prettyPrintNetwork, traceShortestPath } = require('./utils.js');
 
-// Maps/augment the weight and shortest_source node
-// Index 0 (first element) is assumed to be the source node.
-const networkNodes = data.nodes.map((d, i) => ({
-  ...d,
-  weight: i === 0 ? 0 : Infinity,
-  shortest_source: i === 0 ? d.id : undefined,
-}));
+let networkData = getNetworkData();
 
-// Flattens the edges array to a pretty format.
-const prettyPrintNetwork = (networkData) => {
-  console.clear();
-  const detailedTable = networkData.map(d => ({
-    ...d,
-    edges: d.edges.reduce((acc, e) => {
-      acc.push(`{${e.destination}:${e.cost}}`);
-      return acc;
-    }, []).join()
-  }));
-
-  console.table(detailedTable);
+// Bellman-Ford algorithm. Iterate n-1 times, where n is the # of nodes (networkData.length)
+for(let i=0; i < networkData.length - 1; i++ ) {
+  // For each node, we will check it's edges and destination node and relax them.
+  networkData.forEach(currentNode => {
+    // If current node does not have any outgoing edges, no need to relax destination nodes
+    if (currentNode.edges.length > 0) {
+      currentNode.edges.forEach(edge => {
+        const destinationNode = networkData.find(n => n.id === edge.destination);
+        // If destination node weight is more than what it took to get to current node
+        // Plus the edge cost, then we have a new shortest cost
+        if (currentNode.weight + edge.cost < destinationNode.weight) {
+          // Update the cost, and the source node so we can trace back the routes.
+          destinationNode.weight = currentNode.weight + edge.cost;
+          destinationNode.shortest_source = currentNode.id;
+        }
+      })
+    }
+  });
 }
+prettyPrintNetwork(networkData);
 
-prettyPrintNetwork(networkNodes);
+const shortestPath = traceShortestPath(networkData, 'I');
+console.log(shortestPath);
