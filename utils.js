@@ -10,7 +10,7 @@ module.exports.getNetworkData = () => data.nodes.map((d, i) => ({
 
 // Flattens the edges array to a pretty format.
 module.exports.prettyPrintNetwork = (networkData) => {
-  console.clear();
+  // console.clear();
   const detailedTable = networkData.map(d => ({
     ...d,
     edges: d.edges.reduce((acc, e) => {
@@ -25,14 +25,17 @@ module.exports.prettyPrintNetwork = (networkData) => {
 module.exports.traceShortestPath = (networkData, destinationNodeId) => {
   let currentNode = networkData.find(n => n.id === destinationNodeId);
   const shortestPath = [];
-  while (currentNode.id !== 'S' && currentNode.shortest_source !== Infinity) {
+
+  while (currentNode.id !== 'S' && !!currentNode.shortest_source) {
     shortestPath.push(currentNode);
     currentNode = networkData.find(n => n.id === currentNode.shortest_source);
   }
+
   if (currentNode.id === 'S') {
     shortestPath.push(currentNode);
-    return shortestPath.map(path => path.id).join(' <- ');
+    return shortestPath.reverse().map(path => path.id).join(' -> ');
   }
 
-  return 'No shortest path to source node S';
+  return `No shortest path from S to ${destinationNodeId} found! `;
 };
+
