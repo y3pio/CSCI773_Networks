@@ -1,2 +1,27 @@
 .idea/
 .DS_Store
+
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/bellman-ford-network-ui/node_modules
+/bellman-ford-network-ui/.pnp
+/bellman-ford-network-ui/.pnp.js
+
+# testing
+/bellman-ford-network-ui/coverage
+
+# production
+/bellman-ford-network-ui/build
+
+# misc
+/bellman-ford-network-ui/.DS_Store
+/bellman-ford-network-ui/.env.local
+/bellman-ford-network-ui/.env.development.local
+/bellman-ford-network-ui/.env.test.local
+/bellman-ford-network-ui/.env.production.local
+
+/bellman-ford-network-ui/npm-debug.log*
+/bellman-ford-network-ui/yarn-debug.log*
+/bellman-ford-network-ui/yarn-error.log*

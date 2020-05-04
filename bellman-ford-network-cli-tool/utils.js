@@ -1,4 +1,4 @@
-const data = require('./data.json');
+const data = require('../data.json');
 
 // Maps/augment the cost to infinity and shortest_source node to undefined
 // Index 0 (first element) is assumed to be the source node.
