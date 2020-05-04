@@ -13,20 +13,19 @@ export const App = () => {
     ],
     edges: [
       { from: 1, to: 2, label: 'Hello', color: "lime" },
-      { from: 1, to: 3 },
+      { from: 1, to: 3, label: "1-3", color: 'blue', smooth: {enabled: true}},
+      { from: 3, to: 1, label: "3-1", smooth: {enabled: true}},
       { from: 2, to: 4 },
       { from: 2, to: 5 }
     ]
   };
 
   const options = {
-    layout: {
-      hierarchical: false
-    },
     edges: {
-      color: "#000000"
+      color: "#FF0000"
     },
-    height: "500px"
+    height: "500px",
+    physics: true
   };
 
   const events = {
