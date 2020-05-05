@@ -1,17 +1,45 @@
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url(./fonts/Roboto-Light.ttf);
+}
+
 body {
     margin: 0;
+    font-family: Roboto-Light;
+    color: #2d3436;
+    font-size: 1.25em;
 }
 
 #app-wrapper {
     display: flex;
     flex-direction: row-reverse;
-    height: 100vh;
+    min-height: 100vh;
 }
 
+/*
+ Right side data panel
+*/
 #data-panel-wrapper {
     width: 45%;
-    background-color: lime;
+    background-color: #ffffff;
+    padding: 10px 0 0 10px;
 }
+
+#network-node-data {
+}
+
+#network-node-data .node-listing {
+    margin-top: .5em;
+}
+
+#network-node-data .edge-listing {
+
+}
+
+
+/*
+ Left side graph viewer
+*/
 
 #graph-canvas-wrapper {
     width: 100%;
@@ -19,5 +47,5 @@ body {
 
 #graph-canvas-wrapper .vis-network {
     outline: none;
-    background-color: #7f7f7f;
+    background-color: #2d2d2d;
 }

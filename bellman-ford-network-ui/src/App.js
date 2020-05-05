@@ -1,29 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import Graph from "react-graph-vis";
-import './index.css'
 import DataPanel from './DataPanel';
 import networkData from './test_data';
-import { addEdgeLabel, GRAPH_OPTIONS } from './graph-utils';
+import { augmentEdgeData, GRAPH_OPTIONS } from './graph-utils';
 
 export const App = () => {
-  const graphData = {
-    nodes: networkData.nodes,
-    edges: addEdgeLabel(networkData.edges)
-  };
+
+  const [nodeData, setNodeData] = useState(networkData.nodes);
+  const [edgeData, setEdgeData] = useState(augmentEdgeData(networkData.edges));
+
+  const [selectedNode, setSelectedNode] = useState(undefined);
+  const [selectedEdge, setSelectedEdge] = useState(undefined);
 
   const events = {
-    select: function(event) {
-      // TODO: Read up on API to figure out how to use event data to get node/edge info.
-      var { nodes, edges } = event;
-      console.log(`${JSON.stringify(event)}`);
+    select: (event) => {
+      const { nodes, edges } = event;
+      console.log(`Select nodes: ${JSON.stringify(nodes)}`);
+      console.log(`Select edges: ${JSON.stringify(edges)}`);
+    },
+    hoverNode: (event) => {
+      const { node } = event;
+      console.log(`Hover Node: ${JSON.stringify(node)}`);
+    },
+    hoverEdge: (event) => {
+      const { edge } = event;
+      console.log(`Hover Edge: ${JSON.stringify(edge)}`);
     }
   };
   return (
     <div id='app-wrapper'>
-      <DataPanel/>
+      <DataPanel
+        nodeData={nodeData}
+        edgeData={edgeData}
+        selectedNode={selectedNode}
+        selectedEdge={selectedEdge}
+      />
       <div id='graph-canvas-wrapper' >
         <Graph
-          graph={graphData}
+          graph={{ nodes: nodeData, edges: edgeData, }}
           options={GRAPH_OPTIONS}
           events={events}
         />
