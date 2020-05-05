@@ -48,6 +48,12 @@ export const GRAPH_OPTIONS = {
   }
 };
 
+export const augmentNodeDate = (nodeData) => nodeData.map(node => ({
+  ...node,
+  weight: Infinity,
+  shortest_source: undefined
+}));
+
 export const augmentEdgeData = (edgeData) => edgeData.map(edge => ({
   ...edge,
   label: edge.cost.toString()
@@ -57,6 +63,7 @@ export const getNodeEdgeData = (nodeId, edgeData) => edgeData.filter(e => e.from
 
 export default {
   getNodeEdgeData,
+  augmentNodeDate,
   augmentEdgeData,
   GRAPH_OPTIONS
 };

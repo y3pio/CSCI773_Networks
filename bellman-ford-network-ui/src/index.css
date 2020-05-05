@@ -14,6 +14,7 @@ body {
     display: flex;
     flex-direction: row-reverse;
     min-height: 100vh;
+    max-height: 100vh;
 }
 
 /*
@@ -48,4 +49,22 @@ body {
 #graph-canvas-wrapper .vis-network {
     outline: none;
     background-color: #2d2d2d;
+}
+
+#hover-data-panel {
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    z-index: 10;
+    background-color: transparent;
+    color: #ffffff;
+    padding: 10px 0 0 10px;
+}
+
+#hover-data-panel .data {
+    color: #ff69a6;
+}
+
+#hover-data-panel .data span {
+    color: #ffffff;
 }
