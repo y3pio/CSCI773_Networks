@@ -25,7 +25,6 @@ const renderHoverPanel = ({ type, id, ...data }) => {
 };
 
 export const HoverPanel = ({hoverData}) => {
-  console.log(`HoverPanel: ${JSON.stringify(hoverData)}`);
   if (hoverData === undefined) {
     return null;
   }

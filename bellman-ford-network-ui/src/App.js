@@ -10,16 +10,23 @@ export const App = () => {
   const [nodeData, setNodeData] = useState(augmentNodeDate(networkData.nodes));
   const [edgeData, setEdgeData] = useState(augmentEdgeData(networkData.edges));
 
-  const [selectedNode, setSelectedNode] = useState(undefined);
-  const [selectedEdge, setSelectedEdge] = useState(undefined);
-
+  const [selectedObject, setSelectedObject] = useState(undefined);
   const [hoverData, setHoverData] = useState(undefined);
 
   const events = {
     select: (event) => {
       const { nodes, edges } = event;
-      // console.log(`Select nodes: ${JSON.stringify(nodes)}`);
-      // console.log(`Select edges: ${JSON.stringify(edges)}`);
+      if (nodes.length > 0 || edges.length > 0) {
+        console.log(`Nodes:: ${JSON.stringify(nodes)}`);
+        setSelectedObject({
+          data: {
+            nodes: nodeData.filter(n => nodes.includes(n.id)),
+            edges: edgeData.filter(e => edges.includes(e.id))
+          }
+        })
+      } else {
+        setSelectedObject(undefined);
+      }
     },
     hoverNode: (event) => {
       const { node } = event;
@@ -47,8 +54,7 @@ export const App = () => {
       <DataPanel
         nodeData={nodeData}
         edgeData={edgeData}
-        selectedNode={selectedNode}
-        selectedEdge={selectedEdge}
+        selectedObject={selectedObject}
       />
       <div id='graph-canvas-wrapper' >
         <HoverPanel hoverData={hoverData} />

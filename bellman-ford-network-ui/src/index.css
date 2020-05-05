@@ -23,19 +23,53 @@ body {
 #data-panel-wrapper {
     width: 45%;
     background-color: #ffffff;
-    padding: 10px 0 0 10px;
+    overflow-y: hidden;
 }
 
-#network-node-data {
+#data-panel-wrapper .title {
+    background-color: #008ac9;
+    color: #ffffff;
+    font-size: 1.75em;
+    text-align: center;
+    min-height: 5vh;
 }
 
-#network-node-data .node-listing {
+#network-data {
+    height: 35vh;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    padding: 0 0 10px 10px;
+}
+
+#network-data .node-listing {
     margin-top: .5em;
+    display: flex;
 }
 
-#network-node-data .edge-listing {
-
+#network-data .node-listing .edge-listing {
+    margin-left: 5px;
 }
+
+#selected-object-data {
+    height: 55vh;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#selected-object-data #selected-node-data div {
+    margin-bottom: 5px
+}
+
+#selected-object-data #selected-node-data input {
+    font-size: .75em;
+    font-family: Roboto-Light;
+    outline: none;
+}
+
+#selected-object-data #selected-node-data span {
+     color: #ff69a6;
+ }
+
 
 
 /*

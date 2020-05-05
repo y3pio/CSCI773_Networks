@@ -11,7 +11,7 @@ const edge_highlight_color = '#ff6f7a';
 const edge_hover_color = '#ff6f7a';
 
 export const GRAPH_OPTIONS = {
-  interaction: { hover:true },
+  interaction: { hover:true, multiselect: true },
   nodes: {
     color: {
       background: node_background,
@@ -50,8 +50,9 @@ export const GRAPH_OPTIONS = {
 
 export const augmentNodeDate = (nodeData) => nodeData.map(node => ({
   ...node,
-  weight: Infinity,
-  shortest_source: undefined
+  weight: node.is_source_node ? 0 : Infinity,
+  shortest_source: node.is_source_node ? node.label : undefined,
+  color: node.is_source_node ? '#ff0000' : undefined
 }));
 
 export const augmentEdgeData = (edgeData) => edgeData.map(edge => ({
