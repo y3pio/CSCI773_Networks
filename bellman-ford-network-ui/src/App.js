@@ -1,31 +1,14 @@
 import React from "react";
 import Graph from "react-graph-vis";
-import './App.css'
+import './index.css'
+import DataPanel from './DataPanel';
+import networkData from './test_data';
+import { addEdgeLabel, GRAPH_OPTIONS } from './graph-utils';
 
 export const App = () => {
-  const graph = {
-    nodes: [
-      { id: 1, label: "Node 1", title: "node 1 tootip text", color: 'red' },
-      { id: 2, label: "Node 2", title: "node 2 tootip text", color: 'grey' },
-      { id: 3, label: "Node 3", title: "node 3 tootip text" },
-      { id: 4, label: "Node 4", title: "node 4 tootip text" },
-      { id: 5, label: "Node 5", title: "node 5 tootip text" }
-    ],
-    edges: [
-      { from: 1, to: 2, label: 'Hello', color: "lime" },
-      { from: 1, to: 3, label: "1-3", color: 'blue', smooth: {enabled: true}},
-      { from: 3, to: 1, label: "3-1", smooth: {enabled: true}},
-      { from: 2, to: 4 },
-      { from: 2, to: 5 }
-    ]
-  };
-
-  const options = {
-    edges: {
-      color: "#FF0000"
-    },
-    height: "500px",
-    physics: true
+  const graphData = {
+    nodes: networkData.nodes,
+    edges: addEdgeLabel(networkData.edges)
   };
 
   const events = {
@@ -36,12 +19,15 @@ export const App = () => {
     }
   };
   return (
-    <div id='graph-canvas-wrapper' >
-      <Graph
-        graph={graph}
-        options={options}
-        events={events}
-      />
+    <div id='app-wrapper'>
+      <DataPanel/>
+      <div id='graph-canvas-wrapper' >
+        <Graph
+          graph={graphData}
+          options={GRAPH_OPTIONS}
+          events={events}
+        />
+      </div>
     </div>
   );
 };

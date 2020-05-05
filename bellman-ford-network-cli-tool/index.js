@@ -1,11 +1,16 @@
-const { getNetworkData, prettyPrintNetwork, traceShortestPath } = require('./utils.js');
-const { bellmanFordNetwork } = require('./bellman-ford.js');
+const { getNetworkNodes, getNetworkEdges, traceShortestPath } = require('./utils.js');
+const { bellmanFordNetwork } = require('../bellman-ford.js');
 
 console.clear();
-let networkData = getNetworkData();
+let networkNodes = getNetworkNodes();
+let networkEdges = getNetworkEdges();
 
-const relaxedNetwork = bellmanFordNetwork(networkData);
-prettyPrintNetwork(relaxedNetwork);
+console.table(networkNodes);
+console.table(networkEdges);
 
-const shortestPath = traceShortestPath(relaxedNetwork, 'I');
+const relaxedNetworkNodes = bellmanFordNetwork(networkNodes, networkEdges);
+
+console.table(relaxedNetworkNodes);
+//
+const shortestPath = traceShortestPath(relaxedNetworkNodes, 'I');
 console.log(shortestPath);
