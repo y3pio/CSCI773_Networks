@@ -1,14 +1,16 @@
 const node_background = '#008ac9';
 const node_border = '#6488db';
-const node_highlight_bg = '#b04675';
-const node_highlight_border = '#ff6f7a';
-const node_hover_bg = '#ff69a6';
+const node_highlight_bg = '#006c9e';
+const node_highlight_border = '#ffffff';
+const node_hover_bg = '#006c9e';
 const node_font_color = '#ffffff';
 
 const edge_color = '#ffffff';
 const edge_font_color = '#ffffff';
-const edge_highlight_color = '#ff6f7a';
-const edge_hover_color = '#ff6f7a';
+const edge_highlight_color = '#008ac9';
+const edge_hover_color = '#ffffff';
+
+const shortest_path_color = '#ff6f7a';
 
 export const GRAPH_OPTIONS = {
   interaction: { hover:true, multiselect: true },
@@ -40,7 +42,7 @@ export const GRAPH_OPTIONS = {
     length: 200
   },
   physics: {
-    enabled: false,
+    enabled: true,
     hierarchicalRepulsion: {
       nodeDistance: 400,
       springLength: 500,
@@ -57,8 +59,26 @@ export const augmentNodeDate = (nodeData) => nodeData.map(node => ({
 
 export const augmentEdgeData = (edgeData) => edgeData.map(edge => ({
   ...edge,
-  label: edge.cost.toString()
+  label: edge.cost.toString(),
 }));
+
+export const highlightShortestPath = (edgeData, relaxedNode) => {
+  return edgeData.map(edge => {
+    let isPartOfShortestPath = false;
+    const destinationNode = relaxedNode.find(n => n.id === edge.to);
+    // If the destination node (to) has the same shortest_source (from) as the edge.
+    // Then this edge (to - from) is on the shortest network path.
+    if (destinationNode.shortest_source === edge.from) {
+      isPartOfShortestPath = true;
+    }
+
+    return {
+      ...edge,
+      isPartOfShortestPath,
+      color: isPartOfShortestPath ? shortest_path_color : undefined
+    }
+  })
+};
 
 export const getNodeEdgeData = (nodeId, edgeData) => edgeData.filter(e => e.from === nodeId);
 
@@ -66,5 +86,6 @@ export default {
   getNodeEdgeData,
   augmentNodeDate,
   augmentEdgeData,
+  highlightShortestPath,
   GRAPH_OPTIONS
 };

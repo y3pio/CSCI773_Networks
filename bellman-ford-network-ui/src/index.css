@@ -51,25 +51,29 @@ body {
 }
 
 #selected-object-data {
-    height: 55vh;
+    height: 100vh;
     padding: 10px;
     overflow-y: auto;
 }
 
-#selected-object-data #selected-node-data div {
-    margin-bottom: 5px
+#selected-object-data .selected-title {
+    text-align: center;
+    font-size: 1.5em;
 }
 
-#selected-object-data #selected-node-data input {
-    font-size: .75em;
-    font-family: Roboto-Light;
-    outline: none;
+.selected-data-nodes .selected-title {
+    color: #008ac9;
+}
+.selected-data-nodes span {
+    color: #008ac9;
 }
 
-#selected-object-data #selected-node-data span {
-     color: #ff69a6;
- }
-
+.selected-data-edges .selected-title {
+    color: #ff6f7a;
+}
+.selected-data-edges span {
+    color: #ff6f7a;
+}
 
 
 /*

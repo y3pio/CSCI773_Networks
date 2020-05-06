@@ -18,6 +18,7 @@ const renderHoverPanel = ({ type, id, ...data }) => {
         <div>Edge ID: <span>{id}</span></div>
         <div>From: <span>{data.to}</span></div>
         <div>To: <span>{data.to}</span></div>
+        <div>In Shortest Network: <span>{data.isPartOfShortestPath ? 'Yes' : 'No'} </span></div>
         <div>Cost: <span>{data.cost} </span></div>
       </div>
     )

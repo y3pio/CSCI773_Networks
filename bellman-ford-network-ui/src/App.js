@@ -1,29 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Graph from "react-graph-vis";
 import DataPanel from './DataPanel';
 import HoverPanel from './HoverPanel';
 import networkData from './test_data';
-import { augmentEdgeData, augmentNodeDate, GRAPH_OPTIONS } from './graph-utils';
+import { augmentEdgeData, augmentNodeDate, highlightShortestPath, GRAPH_OPTIONS } from './graph-utils';
+import bellmanFordNetwork from './bellman-ford-ui';
+
+
 
 export const App = () => {
 
   const [nodeData, setNodeData] = useState(augmentNodeDate(networkData.nodes));
   const [edgeData, setEdgeData] = useState(augmentEdgeData(networkData.edges));
+  const [, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   const [selectedObject, setSelectedObject] = useState(undefined);
   const [hoverData, setHoverData] = useState(undefined);
+
+  useEffect(() => {
+    const bfResults = bellmanFordNetwork(nodeData, edgeData);
+    setNodeData(bfResults);
+    setEdgeData(highlightShortestPath(edgeData, bfResults));
+  }, []);
 
   const events = {
     select: (event) => {
       const { nodes, edges } = event;
       if (nodes.length > 0 || edges.length > 0) {
-        console.log(`Nodes:: ${JSON.stringify(nodes)}`);
         setSelectedObject({
           data: {
             nodes: nodeData.filter(n => nodes.includes(n.id)),
             edges: edgeData.filter(e => edges.includes(e.id))
           }
         })
+        setHoverData(undefined);
       } else {
         setSelectedObject(undefined);
       }
