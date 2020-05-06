@@ -29,7 +29,7 @@ const renderSelectedEdges = (edgeData) => {
     {edgeData.map(e => (
       <div className='selected-object'>
         <div>Edge ID: <span>{e.id}</span></div>
-        <div>From: <span>{e.to}</span></div>
+        <div>From: <span>{e.from}</span></div>
         <div>To: <span>{e.to}</span></div>
         <div>In Shortest Network: <span>{e.isPartOfShortestPath ? 'Yes' : 'No'} </span></div>
         <div>Cost: <span>{e.cost} </span></div>
