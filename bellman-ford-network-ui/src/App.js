@@ -12,8 +12,6 @@ export const App = () => {
 
   const [nodeData, setNodeData] = useState(augmentNodeDate(networkData.nodes));
   const [edgeData, setEdgeData] = useState(augmentEdgeData(networkData.edges));
-  const [, updateState] = React.useState();
-  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   const [selectedObject, setSelectedObject] = useState(undefined);
   const [hoverData, setHoverData] = useState(undefined);

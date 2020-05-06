@@ -1,22 +1,4 @@
 import React from "react";
-import { getNodeEdgeData } from './graph-utils';
-
-// const renderNetworkData = (nodeData, edgeData) => {
-//   return (
-//     <div id='network-data'>
-//       *Lists the [Node-Weight] and its (Edge, Cost)
-//       {nodeData.map(node => {
-//         const nodeEdgeData = getNodeEdgeData(node.id, edgeData);
-//         const nodeWeight = isFinite(node.weight) ? node.weight : 'Inf';
-//         return (<div className='node-listing'>[{node.id} - {nodeWeight} ]: {
-//           nodeEdgeData.map(e => (<div className='edge-listing'>
-//             ({e.from}:{e.to}, {e.cost})
-//           </div>))
-//         }</div>)
-//       })}
-//     </div>
-//   )
-// };
 
 const renderSelectedNodeData = (nodeData) => {
   if (nodeData.length === 0 ) {
@@ -68,8 +50,7 @@ const renderSelectedData = (nodeData, edgeData, selectedObject) => {
         Shortest network path will be highlighted in <span style={{color: '#ff6f7a'}}>pink</span>, source node will be highlighted in
         <span style={{color: '#ff0000'}}> red</span>
       <br/><br/>
-        Non shortest path edges will be displayed in
-        <span style={{color: '#ffffff', backgroundColor: '#2d3436'}}> white</span> and in
+        Non shortest path edges will be displayed in <span style={{color: '#ffffff', backgroundColor: '#2d3436'}}>white</span> and in
         <span style={{color: '#008ac9' }}> blue</span> when selected.
       <hr/>
         Or click <span style={{textDecoration: 'line-through'}}>here</span> to add/modify the network data JSON. (TODO)
