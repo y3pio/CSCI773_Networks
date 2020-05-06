@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/CSCI-773_Networks/static/css/main.2d5cf425.chunk.css",
+    "main.css": "/CSCI-773_Networks/static/css/main.2e366822.chunk.css",
     "main.js": "/CSCI-773_Networks/static/js/main.84110bb5.chunk.js",
     "main.js.map": "/CSCI-773_Networks/static/js/main.84110bb5.chunk.js.map",
     "runtime-main.js": "/CSCI-773_Networks/static/js/runtime-main.60c47989.js",
@@ -8,16 +8,16 @@
     "static/js/2.e58d5f46.chunk.js": "/CSCI-773_Networks/static/js/2.e58d5f46.chunk.js",
     "static/js/2.e58d5f46.chunk.js.map": "/CSCI-773_Networks/static/js/2.e58d5f46.chunk.js.map",
     "index.html": "/CSCI-773_Networks/index.html",
-    "precache-manifest.bf01d3b1597a3c363fbc3c31fbb64ac0.js": "/CSCI-773_Networks/precache-manifest.bf01d3b1597a3c363fbc3c31fbb64ac0.js",
+    "precache-manifest.0a06076a5a61a91c09ddf38ca5322e51.js": "/CSCI-773_Networks/precache-manifest.0a06076a5a61a91c09ddf38ca5322e51.js",
     "service-worker.js": "/CSCI-773_Networks/service-worker.js",
-    "static/css/main.2d5cf425.chunk.css.map": "/CSCI-773_Networks/static/css/main.2d5cf425.chunk.css.map",
+    "static/css/main.2e366822.chunk.css.map": "/CSCI-773_Networks/static/css/main.2e366822.chunk.css.map",
     "static/js/2.e58d5f46.chunk.js.LICENSE.txt": "/CSCI-773_Networks/static/js/2.e58d5f46.chunk.js.LICENSE.txt",
     "static/media/index.css": "/CSCI-773_Networks/static/media/Roboto-Light.c6cdfded.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.60c47989.js",
     "static/js/2.e58d5f46.chunk.js",
-    "static/css/main.2d5cf425.chunk.css",
+    "static/css/main.2e366822.chunk.css",
     "static/js/main.84110bb5.chunk.js"
   ]
 }
