@@ -54,7 +54,14 @@ export const augmentNodeDate = (nodeData) => nodeData.map(node => ({
   ...node,
   weight: node.is_source_node ? 0 : Infinity,
   shortest_source: node.is_source_node ? node.label : undefined,
-  color: node.is_source_node ? '#ff0000' : undefined
+  color: {
+    background: node.is_source_node ? '#ff0000' : undefined,
+    highlight: {
+      background: node.is_source_node ? '#ff0000' : undefined,
+      border: node_highlight_border
+    },
+    hover: node.is_source_node ? '#ff0000' : undefined
+  },
 }));
 
 export const augmentEdgeData = (edgeData) => edgeData.map(edge => ({
