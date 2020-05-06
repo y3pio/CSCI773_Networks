@@ -106,3 +106,30 @@ body {
 #hover-data-panel .data span {
     color: #ffffff;
 }
+
+/*
+ Mobile CSS
+*/
+
+@media only screen and (max-width: 900px) {
+    #app-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #data-panel-wrapper {
+        width: 100vw;
+    }
+
+    #selected-object-data {
+        height: 40vh;
+    }
+
+    #graph-canvas-wrapper {
+        height: 60vh;
+    }
+
+    #hover-data-panel {
+        font-size: .75em;
+    }
+}
