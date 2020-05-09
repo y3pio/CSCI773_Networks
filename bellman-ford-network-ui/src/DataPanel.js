@@ -39,7 +39,7 @@ const renderSelectedEdges = (edgeData) => {
   </div>)
 };
 
-const renderSelectedData = (nodeData, edgeData, selectedObject) => {
+const renderSelectedData = (nodeData, edgeData, selectedObject, toggleEditMode) => {
   if (!selectedObject) {
     return (<div id='selected-object-data'>
       <div id='select-instructions'>
@@ -53,10 +53,11 @@ const renderSelectedData = (nodeData, edgeData, selectedObject) => {
         Non shortest path edges will be displayed in <span style={{color: '#ffffff', backgroundColor: '#2d3436'}}>white</span> and in
         <span style={{color: '#008ac9' }}> blue</span> when selected.
       <hr/>
-        Or click <span style={{textDecoration: 'line-through'}}>here</span> to add/modify the network data JSON. (TODO)
+        Or click edit below to add/modify the network JSON data.
       <br/><br/>
-        *Note: Bellman-Ford is automatically ran on adding/modifying the network JSON data above.
+        *Note: Bellman-Ford is automatically ran on adding/modifying the network JSON data.
       </div>
+      <button id='toggle-edit-button' onClick={toggleEditMode}>Edit JSON Data</button>
     </div>)
   }
 
@@ -70,13 +71,13 @@ const renderSelectedData = (nodeData, edgeData, selectedObject) => {
   )
 };
 
-export const DataPanel = ({ nodeData, edgeData, selectedObject }) => {
+export const DataPanel = ({ nodeData, edgeData, selectedObject, toggleEditMode }) => {
   return(
     <div id='data-panel-wrapper'>
       {/*<div className='title'>Current Network Data</div>*/}
       {/*{renderNetworkData(nodeData, edgeData)}*/}
       <div className='title'>Network Info</div>
-      {renderSelectedData(nodeData, edgeData, selectedObject)}
+      {renderSelectedData(nodeData, edgeData, selectedObject, toggleEditMode)}
     </div>
   )
 };

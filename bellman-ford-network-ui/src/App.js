@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Graph from "react-graph-vis";
 import DataPanel from './DataPanel';
 import HoverPanel from './HoverPanel';
+import EditPanel from './EditPanel';
 import networkData from './test_data';
 import { augmentEdgeData, augmentNodeDate, highlightShortestPath, GRAPH_OPTIONS } from './graph-utils';
 import bellmanFordNetwork from './bellman-ford-ui';
@@ -10,11 +11,14 @@ import bellmanFordNetwork from './bellman-ford-ui';
 
 export const App = () => {
 
+  const [ editMode, setEditMode ] = useState(true); //TODO: Switch back to false
+
   const [nodeData, setNodeData] = useState(augmentNodeDate(networkData.nodes));
   const [edgeData, setEdgeData] = useState(augmentEdgeData(networkData.edges));
 
   const [selectedObject, setSelectedObject] = useState(undefined);
   const [hoverData, setHoverData] = useState(undefined);
+
 
   useEffect(() => {
     const bfResults = bellmanFordNetwork(nodeData, edgeData);
@@ -60,19 +64,33 @@ export const App = () => {
     <div id='app-wrapper' onMouseOver={() => {
       setHoverData(undefined);
     }}>
-      <DataPanel
-        nodeData={nodeData}
-        edgeData={edgeData}
-        selectedObject={selectedObject}
-      />
-      <div id='graph-canvas-wrapper' >
-        <HoverPanel hoverData={hoverData} />
-        <Graph
-          graph={{ nodes: nodeData, edges: edgeData, }}
-          options={GRAPH_OPTIONS}
-          events={events}
+      {editMode ?
+        <EditPanel
+          nodeData={nodeData}
+          setNodeData={setNodeData}
+          edgeData={edgeData}
+          setEdgeData={setEdgeData}
+          toggleEditMode={() => setEditMode(!editMode)}
         />
-      </div>
+        :
+        <React.Fragment>
+          <DataPanel
+            nodeData={nodeData}
+            edgeData={edgeData}
+            selectedObject={selectedObject}
+            toggleEditMode={() => setEditMode(!editMode)}
+          />
+          <div id='graph-canvas-wrapper' >
+            <HoverPanel hoverData={hoverData} />
+            <Graph
+              graph={{ nodes: nodeData, edges: edgeData, }}
+              options={GRAPH_OPTIONS}
+              events={events}
+            />
+          </div>
+        </React.Fragment>
+      }
+
     </div>
   );
 };
