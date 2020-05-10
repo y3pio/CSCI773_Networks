@@ -163,19 +163,21 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
             </div>
           ))}
         </div>
-        <button onClick={() => {
-          const JSONtextArea = document.getElementById('json-edit-textarea');
-          JSONtextArea.value = JSON.stringify(networkData, undefined, 4);
-          validateNetworkData(JSONtextArea.value);
-        }}>Reset</button>
-        <button id='toggle-edit-mode' onClick={toggleEditMode}>Cancel</button>
-        <button
-          id='save-new-graph'
-          onClick={saveNewGraph}
-          disabled={!isValidJON || !validationStatus.every(s => s.isValid)}
-        >
-          Save
-        </button>
+        <div id='submission-control'>
+          <button onClick={() => {
+            const JSONtextArea = document.getElementById('json-edit-textarea');
+            JSONtextArea.value = JSON.stringify(networkData, undefined, 4);
+            validateNetworkData(JSONtextArea.value);
+          }}>Reset</button>
+          <button id='toggle-edit-mode' onClick={toggleEditMode}>Cancel</button>
+          <button
+            id='save-new-graph'
+            onClick={saveNewGraph}
+            disabled={!isValidJON || !validationStatus.every(s => s.isValid)}
+          >
+            Save
+          </button>
+        </div>
       </div>
     </div>
   )

@@ -148,7 +148,15 @@ body {
     display: flex;
 }
 
-#submission-panel #instructions #title {
+#submission-panel #submission-control {
+    padding-top: 5vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+#submission-panel #submission-control button {
+    font-size: 1em;
+    cursor: pointer;
 }
 
 #example textarea {
@@ -163,6 +171,8 @@ body {
     display: flex;
     flex-direction: column;
     margin: 1em 0;
+    max-height: 30vh;
+    min-height: 30vh;
 }
 
 #validation-status .validation {
