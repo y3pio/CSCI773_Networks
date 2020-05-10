@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {augmentEdgeData} from './graph-utils';
+import {augmentEdgeData, augmentNodeDate, highlightShortestPath} from './graph-utils';
+import bellmanFordNetwork from './bellman-ford-ui';
 
 const example_node = {
   "nodes(1...n)": [{
@@ -53,8 +54,16 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
     }))};
 
   const saveNewGraph= () => {
-    const newJSONData = JSON.parse(document.getElementById('json-edit-textarea').value);
-    setEdgeData(augmentEdgeData(newJSONData.edges));
+    if (isValidJON && validationStatus.every(s => s.isValid)) {
+      const newJSONData = JSON.parse(document.getElementById('json-edit-textarea').value);
+      const newNodeData = augmentNodeDate(newJSONData.nodes);
+      const newEdgeData = augmentEdgeData(newJSONData.edges);
+      setNodeData(newNodeData);
+      setEdgeData(newEdgeData);
+      const bfResults = bellmanFordNetwork(newNodeData, newEdgeData);
+      setNodeData(bfResults);
+      setEdgeData(highlightShortestPath(newEdgeData, bfResults));
+    }
   };
 
   const validateNetworkData = (inputValue) => {
@@ -160,7 +169,13 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
           validateNetworkData(JSONtextArea.value);
         }}>Reset</button>
         <button id='toggle-edit-mode' onClick={toggleEditMode}>Cancel</button>
-        <button id='save-new-graph' onClick={saveNewGraph}>Save</button>
+        <button
+          id='save-new-graph'
+          onClick={saveNewGraph}
+          disabled={!isValidJON || !validationStatus.every(s => s.isValid)}
+        >
+          Save
+        </button>
       </div>
     </div>
   )
