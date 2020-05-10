@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {augmentEdgeData} from './graph-utils';
 
 const example_node = {
   "nodes(1...n)": [{
@@ -22,8 +23,20 @@ const example_edge = {
 
 export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggleEditMode }) => {
 
-  // TODO: Turn this into a validation object
-  const [ isValidJSON, setIsValidJSON ] = useState(true);
+  const [ isValidJON, setIsValidJSON ]= useState(true);
+  const [ validationStatus, setValidationStatus ] = useState([
+    { id: 'nodes', name: 'Nodes array is valid', isValid: true },
+    { id: 'uniqueNodes', name: 'Nodes all have unique IDs', isValid: true },
+    { id: 'sourceNode', name: 'Contains EXACTLY ONE "is_source_node"', isValid: true },
+    { id: 'edges', name: 'Edges array is valid', isValid: true },
+    { id: 'toFromValid', name: 'Edges all point to/from valid nodes', isValid: true}
+  ]);
+
+  // Redundant (?)
+  useEffect(() => {
+    const JSONtextArea = document.getElementById('json-edit-textarea');
+    validateNetworkData(JSONtextArea.value);
+  }, [nodeData, edgeData]);
 
   const networkData = {nodes: nodeData.map(n => ({
       ...n,
@@ -39,15 +52,64 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
       color: undefined,
     }))};
 
-  const validateOnChange = (e) => {
-    let onChangeJSON;
+  const saveNewGraph= () => {
+    const newJSONData = document.getElementById('json-edit-textarea').value;
+    setEdgeData(augmentEdgeData(JSON.parse(newJSONData.edges)));
+  };
+
+  const validateNetworkData = (inputValue) => {
+    let newValidation = {
+      nodes: false,
+      uniqueNodes: false,
+      sourceNode: false,
+      edges: false,
+      toFromValid: false
+    };
+
+    let newJSONData;
     try {
-      onChangeJSON = JSON.parse(e.target.value);
-      setIsValidJSON(true);
+      newJSONData = JSON.parse(inputValue);
     } catch (e) {
       console.log(`Error parsing JSON: ${e}`);
-      setIsValidJSON(false);
+      setIsValidJSON(newValidation.JSON);
+      return;
     }
+
+    if (newJSONData) {
+      newValidation.JSON = true;
+
+      if (Array.isArray(newJSONData.nodes)) {
+        newValidation.nodes = true;
+
+        if (newJSONData.nodes.filter(n => n.is_source_node === true).length === 1) {
+          newValidation.sourceNode = true;
+        }
+
+        if (newJSONData.nodes.every((n, _, src) => src.filter(s => s.id === n.id).length === 1)) {
+          newValidation.uniqueNodes = true;
+        }
+
+        const newNodes = newJSONData.nodes;
+        const hasValidEdges = newJSONData.edges.every(e => {
+          return (newNodes.filter(n => n.id === e.from).length === 1 &&
+            newNodes.filter(n => n.id === e.to).length === 1)
+        });
+
+        if (hasValidEdges) {
+          newValidation.toFromValid = true;
+        }
+      }
+
+      if (Array.isArray(newJSONData.edges)) {
+        newValidation.edges = true;
+      }
+    }
+
+    setIsValidJSON(newValidation.JSON);
+    setValidationStatus(validationStatus.map(s => ({
+      ...s,
+      isValid: newValidation[s.id]
+    })));
   };
 
   return (
@@ -55,7 +117,7 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
       <div id='json-edit-panel'>
         <textarea
           id='json-edit-textarea'
-          onChange={validateOnChange}
+          onChange={e => validateNetworkData(e.target.value)}
           defaultValue={JSON.stringify(networkData, undefined, 4)}
         />
       </div>
@@ -69,23 +131,36 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
         </div>
         <div id='validation-status'>
           <div className='validation'>
-            <div className='validation-name'>Is a valid JSON structure</div>
-            <div className='validation-status'>Ok</div>
+            <div className='validation-name'>Is JSON Valid</div>
+            <div className={`validation-status ${isValidJON ? null : 'invalid'}`}>
+              {isValidJON ? 'Ok' : 'No'}
+            </div>
           </div>
-          <div className='validation'>
-            <div className='validation-name'>Nodes array is valid</div>
-            <div className='validation-status'>Ok</div>
-          </div>
-          <div className='validation'>
-            <div className='validation-name'>Contains EXACTLY ONE is_source_node</div>
-            <div className='validation-status invalid'>No</div>
-          </div>
+          {!isValidJON ? <div>
+            Please ensure JSON data is valid:
+            <ul>
+              <li>JSON key/value objects are encapsulated in double quotes.</li>
+              <li>No trailing commas (on last child objects, array elements)</li>
+              <li>Encapsulated in a parent object ('{ }') at the top level.</li>
+            </ul>
+            Click reset below to reset data back to the last valid JSON data.
+          </div> : null}
+          {isValidJON && validationStatus.map(s => (
+            <div className='validation'>
+              <div className='validation-name'>{s.name}</div>
+              <div className={`validation-status ${s.isValid ? null : 'invalid'}`}>
+                {s.isValid ? 'Ok' : 'No'}
+              </div>
+            </div>
+          ))}
         </div>
         <button onClick={() => {
-          document.getElementById('json-edit-textarea').value =
-            JSON.stringify(networkData, undefined, 4);
+          const JSONtextArea = document.getElementById('json-edit-textarea');
+          JSONtextArea.value = JSON.stringify(networkData, undefined, 4);
+          validateNetworkData(JSONtextArea.value);
         }}>Reset</button>
         <button id='toggle-edit-mode' onClick={toggleEditMode}>Cancel</button>
+        <button id='save-new-graph' onClick={saveNewGraph}>Save</button>
       </div>
     </div>
   )

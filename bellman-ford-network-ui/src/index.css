@@ -176,13 +176,17 @@ body {
 }
 
 #validation-status .validation .validation-status {
+    color: #ffffff
+}
+
+#validation-status .validation .validation-status {
     width: 10%;
-    background: #00ff00;
+    background: #008500;
     text-align: center;
 }
 
 #validation-status .validation .validation-status.invalid {
-    background: #ff0000;
+    background: #a90000;
 }
 
 /*

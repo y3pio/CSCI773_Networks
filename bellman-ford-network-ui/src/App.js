@@ -7,8 +7,6 @@ import networkData from './test_data';
 import { augmentEdgeData, augmentNodeDate, highlightShortestPath, GRAPH_OPTIONS } from './graph-utils';
 import bellmanFordNetwork from './bellman-ford-ui';
 
-
-
 export const App = () => {
 
   const [ editMode, setEditMode ] = useState(true); //TODO: Switch back to false
