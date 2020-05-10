@@ -66,6 +66,7 @@ export const augmentNodeDate = (nodeData) => nodeData.map(node => ({
 
 export const augmentEdgeData = (edgeData) => edgeData.map(edge => ({
   ...edge,
+  id: `${edge.from}:${edge.to}`,
   label: edge.cost.toString(),
 }));
 

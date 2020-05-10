@@ -67,7 +67,11 @@ export const App = () => {
           nodeData={nodeData}
           setNodeData={setNodeData}
           edgeData={edgeData}
-          setEdgeData={setEdgeData}
+          setEdgeData={(newEdgeData) => {
+            console.log(`Saving new Edge data ${newEdgeData}`)
+            setEdgeData(newEdgeData);
+            setEditMode(!editMode);
+          }}
           toggleEditMode={() => setEditMode(!editMode)}
         />
         :

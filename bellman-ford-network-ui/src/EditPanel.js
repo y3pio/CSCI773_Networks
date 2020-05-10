@@ -53,8 +53,8 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
     }))};
 
   const saveNewGraph= () => {
-    const newJSONData = document.getElementById('json-edit-textarea').value;
-    setEdgeData(augmentEdgeData(JSON.parse(newJSONData.edges)));
+    const newJSONData = JSON.parse(document.getElementById('json-edit-textarea').value);
+    setEdgeData(augmentEdgeData(newJSONData.edges));
   };
 
   const validateNetworkData = (inputValue) => {
