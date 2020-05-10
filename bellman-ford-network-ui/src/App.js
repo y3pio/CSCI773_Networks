@@ -9,7 +9,7 @@ import bellmanFordNetwork from './bellman-ford-ui';
 
 export const App = () => {
 
-  const [ editMode, setEditMode ] = useState(true); //TODO: Switch back to false
+  const [ editMode, setEditMode ] = useState(false);
 
   const [nodeData, setNodeData] = useState(augmentNodeDate(networkData.nodes));
   const [edgeData, setEdgeData] = useState(augmentEdgeData(networkData.edges));
