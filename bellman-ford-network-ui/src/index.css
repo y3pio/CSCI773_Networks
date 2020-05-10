@@ -119,7 +119,7 @@ body {
 /*
  Json edit panel
 */
-#edit-panel-wrapper {
+#edit-view-wrapper {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -141,6 +141,48 @@ body {
 
 #submission-panel {
     width: 40vw;
+    padding: 1em;
+}
+
+#submission-panel #instructions #example {
+    display: flex;
+}
+
+#submission-panel #instructions #title {
+}
+
+#example textarea {
+    width: 100%;
+    margin: 10px 0 0 10px;
+    resize: none;
+    outline: none;
+    font-size: .65em;
+}
+
+#validation-status {
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0;
+}
+
+#validation-status .validation {
+    display: flex;
+    margin-top: .25em;
+}
+
+#validation-status .validation .validation-name {
+    width: 85%;
+    margin-right: 5%;
+}
+
+#validation-status .validation .validation-status {
+    width: 10%;
+    background: #00ff00;
+    text-align: center;
+}
+
+#validation-status .validation .validation-status.invalid {
+    background: #ff0000;
 }
 
 /*

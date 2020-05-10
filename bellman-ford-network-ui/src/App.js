@@ -35,7 +35,7 @@ export const App = () => {
             nodes: nodeData.filter(n => nodes.includes(n.id)),
             edges: edgeData.filter(e => edges.includes(e.id))
           }
-        })
+        });
         setHoverData(undefined);
       } else {
         setSelectedObject(undefined);
