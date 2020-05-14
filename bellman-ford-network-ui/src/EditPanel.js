@@ -24,7 +24,7 @@ const example_edge = {
 
 export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggleEditMode }) => {
 
-  const [ isValidJON, setIsValidJSON ]= useState(true);
+  const [ isValidJSON, setIsValidJSON ]= useState(true);
   const [ validationStatus, setValidationStatus ] = useState([
     { id: 'nodes', name: 'Nodes array is valid', isValid: true },
     { id: 'uniqueNodes', name: 'Nodes all have unique IDs', isValid: true },
@@ -35,8 +35,7 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
 
   // Redundant (?)
   useEffect(() => {
-    const JSONtextArea = document.getElementById('json-edit-textarea');
-    validateNetworkData(JSONtextArea.value);
+    validateNetworkData();
   }, [nodeData, edgeData]);
 
   const networkData = {nodes: nodeData.map(n => ({
@@ -54,10 +53,12 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
     }))};
 
   const saveNewGraph= () => {
-    if (isValidJON && validationStatus.every(s => s.isValid)) {
-      const newJSONData = JSON.parse(document.getElementById('json-edit-textarea').value);
-      const newNodeData = augmentNodeDate(newJSONData.nodes);
-      const newEdgeData = augmentEdgeData(newJSONData.edges);
+    if (isValidJSON && validationStatus.every(s => s.isValid)) {
+      const newNodesJSON = JSON.parse(document.getElementById('nodes-json-edit-textarea').value);
+      const newEdgesJSON = JSON.parse(document.getElementById('edges-json-edit-textarea').value);
+
+      const newNodeData = augmentNodeDate(newNodesJSON);
+      const newEdgeData = augmentEdgeData(newEdgesJSON);
       setNodeData(newNodeData);
       setEdgeData(newEdgeData);
       const bfResults = bellmanFordNetwork(newNodeData, newEdgeData);
@@ -66,7 +67,7 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
     }
   };
 
-  const validateNetworkData = (inputValue) => {
+  const validateNetworkData = () => {
     let newValidation = {
       nodes: false,
       uniqueNodes: false,
@@ -75,46 +76,57 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
       toFromValid: false
     };
 
-    let newJSONData;
+    const nodesTextArea = document.getElementById('nodes-json-edit-textarea').value;
+    const edgesTextArea = document.getElementById('edges-json-edit-textarea').value;
+
+    let jsonValid = true;
+
+    // Node Data Validation
+
+    let newNodeJSON;
     try {
-      newJSONData = JSON.parse(inputValue);
+      newNodeJSON = JSON.parse(nodesTextArea);
     } catch (e) {
-      console.log(`Error parsing JSON: ${e}`);
-      setIsValidJSON(newValidation.JSON);
-      return;
+      console.log (`Error parsing Node JSON ${e}`);
+      jsonValid = false;
     }
 
-    if (newJSONData) {
-      newValidation.JSON = true;
+    if (Array.isArray(newNodeJSON)) {
+      newValidation.nodes = true;
 
-      if (Array.isArray(newJSONData.nodes)) {
-        newValidation.nodes = true;
-
-        if (newJSONData.nodes.filter(n => n.is_source_node === true).length === 1) {
-          newValidation.sourceNode = true;
-        }
-
-        if (newJSONData.nodes.every((n, _, src) => src.filter(s => s.id === n.id).length === 1)) {
-          newValidation.uniqueNodes = true;
-        }
-
-        const newNodes = newJSONData.nodes;
-        const hasValidEdges = newJSONData.edges.every(e => {
-          return (newNodes.filter(n => n.id === e.from).length === 1 &&
-            newNodes.filter(n => n.id === e.to).length === 1)
-        });
-
-        if (hasValidEdges) {
-          newValidation.toFromValid = true;
-        }
+      if (newNodeJSON.filter(n => n.is_source_node === true).length === 1) {
+        newValidation.sourceNode = true;
       }
 
-      if (Array.isArray(newJSONData.edges)) {
-        newValidation.edges = true;
+      if (newNodeJSON.every((n, _, src) => src.filter(s => s.id === n.id).length === 1)) {
+        newValidation.uniqueNodes = true;
       }
     }
 
-    setIsValidJSON(newValidation.JSON);
+    // Edge Data Validation
+
+    let newEdgeJSON;
+    try {
+      newEdgeJSON = JSON.parse(edgesTextArea);
+    } catch (e) {
+      console.log (`Error parsing Edge JSON ${e}`);
+      jsonValid = false;
+    }
+
+    if (Array.isArray(newEdgeJSON)) {
+      newValidation.edges = true;
+
+      const hasValidEdges = newNodeJSON && newEdgeJSON.every(e => {
+        return (newNodeJSON.filter(n => n.id === e.from).length === 1 &&
+          newNodeJSON.filter(n => n.id === e.to).length === 1)
+      });
+
+      if (hasValidEdges) {
+        newValidation.toFromValid = true;
+      }
+    }
+
+    setIsValidJSON(jsonValid);
     setValidationStatus(validationStatus.map(s => ({
       ...s,
       isValid: newValidation[s.id]
@@ -124,11 +136,23 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
   return (
     <div id='edit-view-wrapper'>
       <div id='json-edit-panel'>
-        <textarea
-          id='json-edit-textarea'
-          onChange={e => validateNetworkData(e.target.value)}
-          defaultValue={JSON.stringify(networkData, undefined, 4)}
-        />
+        <div id='nodes-edit-section'>
+          <div className='edit-panel-title'>nodes:</div>
+          <textarea
+            id='nodes-json-edit-textarea'
+            onChange={validateNetworkData}
+            defaultValue={JSON.stringify(networkData.nodes, undefined, 4)}
+          />
+        </div>
+
+        <div id='edges-edit-section'>
+          <div className='edit-panel-title'>edges:</div>
+          <textarea
+            id='edges-json-edit-textarea'
+            onChange={validateNetworkData}
+            defaultValue={JSON.stringify(networkData.edges, undefined, 4)}
+          />
+        </div>
       </div>
       <div id='submission-panel'>
         <div id='instructions'>
@@ -141,20 +165,20 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
         <div id='validation-status'>
           <div className='validation'>
             <div className='validation-name'>Is JSON Valid</div>
-            <div className={`validation-status ${isValidJON ? null : 'invalid'}`}>
-              {isValidJON ? 'Ok' : 'No'}
+            <div className={`validation-status ${isValidJSON ? null : 'invalid'}`}>
+              {isValidJSON ? 'Ok' : 'No'}
             </div>
           </div>
-          {!isValidJON ? <div>
+          {!isValidJSON ? <div>
             Please ensure JSON data is valid:
             <ul>
               <li>JSON key/value objects are encapsulated in double quotes.</li>
               <li>No trailing commas (on last child objects, array elements)</li>
-              <li>Encapsulated in a parent object ('{ }') at the top level.</li>
+              <li>Objects are encapsulated in matching {'{ }'} at the top level.</li>
             </ul>
             Click reset below to reset data back to the last valid JSON data.
           </div> : null}
-          {isValidJON && validationStatus.map(s => (
+          {isValidJSON && validationStatus.map(s => (
             <div className='validation'>
               <div className='validation-name'>{s.name}</div>
               <div className={`validation-status ${s.isValid ? null : 'invalid'}`}>
@@ -165,15 +189,18 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
         </div>
         <div id='submission-control'>
           <button onClick={() => {
-            const JSONtextArea = document.getElementById('json-edit-textarea');
-            JSONtextArea.value = JSON.stringify(networkData, undefined, 4);
-            validateNetworkData(JSONtextArea.value);
+            const nodesJSONTextArea = document.getElementById('nodes-json-edit-textarea');
+            const edgesJSONTextArea = document.getElementById('edges-json-edit-textarea');
+            nodesJSONTextArea.value = JSON.stringify(networkData.nodes, undefined, 4);
+            edgesJSONTextArea.value = JSON.stringify(networkData.edges, undefined, 4);
+
+            validateNetworkData();
           }}>Reset</button>
           <button id='toggle-edit-mode' onClick={toggleEditMode}>Cancel</button>
           <button
             id='save-new-graph'
             onClick={saveNewGraph}
-            disabled={!isValidJON || !validationStatus.every(s => s.isValid)}
+            disabled={!isValidJSON || !validationStatus.every(s => s.isValid)}
           >
             Save
           </button>

@@ -42,7 +42,7 @@ export const GRAPH_OPTIONS = {
     length: 200
   },
   physics: {
-    enabled: true,
+    enabled: false,
     hierarchicalRepulsion: {
       nodeDistance: 400,
       springLength: 500,
