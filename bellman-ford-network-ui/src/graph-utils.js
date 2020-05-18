@@ -39,14 +39,18 @@ export const GRAPH_OPTIONS = {
       highlight: edge_highlight_color,
       hover: edge_hover_color,
     },
-    length: 200
+    smooth: {type: "curvedCCW", roundness: 0.1}
   },
   physics: {
-    enabled: true,
+    enabled: false,
     hierarchicalRepulsion: {
+      centralGravity: 0.0,
+      springConstant: 0.01,
+      damping: 0.09,
       nodeDistance: 400,
-      springLength: 500,
+      springLength: 150,
     },
+    solver: 'hierarchicalRepulsion'
   }
 };
 

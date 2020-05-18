@@ -3,7 +3,8 @@ import Graph from "react-graph-vis";
 import DataPanel from './DataPanel';
 import HoverPanel from './HoverPanel';
 import EditPanel from './EditPanel';
-import networkData from './test_data';
+// import networkData from './test_data';
+import networkData from './project_data';
 import { augmentEdgeData, augmentNodeDate, highlightShortestPath, GRAPH_OPTIONS } from './graph-utils';
 import bellmanFordNetwork from './bellman-ford-ui';
 

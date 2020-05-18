@@ -1,0 +1,59 @@
+{
+    "nodes": [
+        {
+            "id": "bf",
+            "label": "bellman-ford",
+            "weight": "",
+            "shortest_source": "",
+            "is_source_node": true
+        },
+        {
+            "id": "ll",
+            "label": "lovelace",
+            "weight": "",
+            "shortest_source": ""
+        },
+        {
+            "id": "ba",
+            "label": "baran",
+            "weight": "",
+            "shortest_source": ""
+        },
+        {
+            "id": "kn",
+            "label": "knuth",
+            "weight": "",
+            "shortest_source": ""
+        },
+        {
+            "id": "ce",
+            "label": "cerf",
+            "weight": "",
+            "shortest_source": ""
+        },
+        {
+            "id": "hp",
+            "label": "hopper",
+            "weight": "",
+            "shortest_source": ""
+        }
+    ],
+    "edges" : [
+        { "id":"bf:ba", "from": "bf", "to":  "ba", "cost": 1 },
+        { "id":"ba:bf", "from": "ba", "to":  "bf", "cost": 1 },
+        { "id":"bf:ll", "from": "bf", "to":  "ll", "cost": 1 },
+        { "id":"ll:bf", "from": "ll", "to":  "bf", "cost": 1 },
+        { "id":"ba:ce", "from": "ba", "to":  "ce", "cost": 1 },
+        { "id":"ce:ba", "from": "ce", "to":  "ba", "cost": 1 },
+        { "id":"ll:hp", "from": "ll", "to":  "hp", "cost": 1 },
+        { "id":"hp:ll", "from": "hp", "to":  "ll", "cost": 1 },
+        { "id":"ll:kn", "from": "ll", "to":  "kn", "cost": 1 },
+        { "id":"kn:ll", "from": "kn", "to":  "ll", "cost": 1 },
+        { "id":"ce:kn", "from": "ce", "to":  "kn", "cost": 1 },
+        { "id":"kn:ce", "from": "kn", "to":  "ce", "cost": 1 },
+        { "id":"ce:hp", "from": "ce", "to":  "hp", "cost": 1 },
+        { "id":"hp:ce", "from": "hp", "to":  "ce", "cost": 1 },
+        { "id":"kn:hp", "from": "kn", "to":  "hp", "cost": 1 },
+        { "id":"hp:kn", "from": "hp", "to":  "kn", "cost": 1 }
+    ]
+}
