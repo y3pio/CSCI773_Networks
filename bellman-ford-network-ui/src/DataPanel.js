@@ -11,7 +11,7 @@ const renderSelectedNodeData = (nodeData) => {
       <div className='selected-object'>
         <div>Node ID: <span>{n.id}</span></div>
         <div>Label: <span>{n.label}</span></div>
-        <div>Weight: <span>{n.weight}</span></div>
+        <div>Cost: <span>{n.cost}</span></div>
         <div>Shortest Source: <span>{n.shortest_source} </span></div>
         <hr/>
       </div>
@@ -32,7 +32,7 @@ const renderSelectedEdges = (edgeData) => {
         <div>From: <span>{e.from}</span></div>
         <div>To: <span>{e.to}</span></div>
         <div>In Shortest Network: <span>{e.isPartOfShortestPath ? 'Yes' : 'No'} </span></div>
-        <div>Cost: <span>{e.cost} </span></div>
+        <div>Weight: <span>{e.weight} </span></div>
         <hr/>
       </div>
     ))}

@@ -32,7 +32,7 @@ export const GRAPH_OPTIONS = {
   edges: {
     font: {
       color: edge_font_color,
-      size: 18
+      size: 14
     },
     color: {
       color: edge_color,
@@ -44,11 +44,7 @@ export const GRAPH_OPTIONS = {
   physics: {
     enabled: false,
     hierarchicalRepulsion: {
-      centralGravity: 0.0,
-      springConstant: 0.01,
-      damping: 0.09,
       nodeDistance: 400,
-      springLength: 150,
     },
     solver: 'hierarchicalRepulsion'
   }
@@ -56,8 +52,8 @@ export const GRAPH_OPTIONS = {
 
 export const augmentNodeDate = (nodeData) => nodeData.map(node => ({
   ...node,
-  weight: node.is_source_node ? 0 : Infinity,
-  shortest_source: node.is_source_node ? node.label : undefined,
+  cost: node.is_source_node ? 0 : Infinity,
+  shortest_source: node.is_source_node ? node.id : undefined,
   color: {
     background: node.is_source_node ? '#ff0000' : undefined,
     highlight: {
@@ -71,7 +67,7 @@ export const augmentNodeDate = (nodeData) => nodeData.map(node => ({
 export const augmentEdgeData = (edgeData) => edgeData.map(edge => ({
   ...edge,
   id: `${edge.from}:${edge.to}`,
-  label: edge.cost.toString(),
+  // label: edge.weight.toString(),
 }));
 
 export const highlightShortestPath = (edgeData, relaxedNode) => {

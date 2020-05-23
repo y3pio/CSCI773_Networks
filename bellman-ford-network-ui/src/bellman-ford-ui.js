@@ -31,8 +31,8 @@ export const bellmanFordNetwork = (nodeData, edgeData) => {
       if (currentNodeEdge.length > 0) {
         currentNodeEdge.forEach(edge => {
           const destinationNode = relaxedNodes.find(n => n.id === edge.to);
-          if (currentNode.weight + edge.cost < destinationNode.weight) {
-            destinationNode.weight = currentNode.weight + edge.cost;
+          if (currentNode.cost + edge.weight < destinationNode.cost) {
+            destinationNode.cost = currentNode.cost + edge.weight;
             destinationNode.shortest_source = currentNode.id;
           }
         })

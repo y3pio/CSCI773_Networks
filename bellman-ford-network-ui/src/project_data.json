@@ -3,57 +3,57 @@
         {
             "id": "bf",
             "label": "bellman-ford",
-            "weight": "",
+            "cost": "",
             "shortest_source": "",
             "is_source_node": true
         },
         {
             "id": "ll",
             "label": "lovelace",
-            "weight": "",
+            "cost": "",
             "shortest_source": ""
         },
         {
             "id": "ba",
             "label": "baran",
-            "weight": "",
+            "cost": "",
             "shortest_source": ""
         },
         {
             "id": "kn",
             "label": "knuth",
-            "weight": "",
+            "cost": "",
             "shortest_source": ""
         },
         {
             "id": "ce",
             "label": "cerf",
-            "weight": "",
+            "cost": "",
             "shortest_source": ""
         },
         {
             "id": "hp",
             "label": "hopper",
-            "weight": "",
+            "cost": "",
             "shortest_source": ""
         }
     ],
     "edges" : [
-        { "id":"bf:ba", "from": "bf", "to":  "ba", "cost": 1 },
-        { "id":"ba:bf", "from": "ba", "to":  "bf", "cost": 1 },
-        { "id":"bf:ll", "from": "bf", "to":  "ll", "cost": 1 },
-        { "id":"ll:bf", "from": "ll", "to":  "bf", "cost": 1 },
-        { "id":"ba:ce", "from": "ba", "to":  "ce", "cost": 1 },
-        { "id":"ce:ba", "from": "ce", "to":  "ba", "cost": 1 },
-        { "id":"ll:hp", "from": "ll", "to":  "hp", "cost": 1 },
-        { "id":"hp:ll", "from": "hp", "to":  "ll", "cost": 1 },
-        { "id":"ll:kn", "from": "ll", "to":  "kn", "cost": 1 },
-        { "id":"kn:ll", "from": "kn", "to":  "ll", "cost": 1 },
-        { "id":"ce:kn", "from": "ce", "to":  "kn", "cost": 1 },
-        { "id":"kn:ce", "from": "kn", "to":  "ce", "cost": 1 },
-        { "id":"ce:hp", "from": "ce", "to":  "hp", "cost": 1 },
-        { "id":"hp:ce", "from": "hp", "to":  "ce", "cost": 1 },
-        { "id":"kn:hp", "from": "kn", "to":  "hp", "cost": 1 },
-        { "id":"hp:kn", "from": "hp", "to":  "kn", "cost": 1 }
+        { "id":"bf:ba", "from": "bf", "to":  "ba", "weight": 99.514 },
+        { "id":"ba:bf", "from": "ba", "to":  "bf", "weight": 99.517 },
+        { "id":"bf:ll", "from": "bf", "to":  "ll", "weight": 61.488 },
+        { "id":"ll:bf", "from": "ll", "to":  "bf", "weight": 61.488 },
+        { "id":"ba:ce", "from": "ba", "to":  "ce", "weight": 52.514 },
+        { "id":"ce:ba", "from": "ce", "to":  "ba", "weight": 50.494 },
+        { "id":"ll:hp", "from": "ll", "to":  "hp", "weight": 154.498 },
+        { "id":"hp:ll", "from": "hp", "to":  "ll", "weight": 160.679 },
+        { "id":"ll:kn", "from": "ll", "to":  "kn", "weight": 126.488 },
+        { "id":"kn:ll", "from": "kn", "to":  "ll", "weight": 126.511 },
+        { "id":"ce:kn", "from": "ce", "to":  "kn", "weight": 123.508 },
+        { "id":"kn:ce", "from": "kn", "to":  "ce", "weight": 128.451 },
+        { "id":"ce:hp", "from": "ce", "to":  "hp", "weight": 169.515 },
+        { "id":"hp:ce", "from": "hp", "to":  "ce", "weight": 176.292 },
+        { "id":"kn:hp", "from": "kn", "to":  "hp", "weight": 62.471 },
+        { "id":"hp:kn", "from": "hp", "to":  "kn", "weight": 64.974 }
     ]
 }

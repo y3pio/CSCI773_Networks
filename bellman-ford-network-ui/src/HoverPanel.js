@@ -6,7 +6,7 @@ const renderHoverPanel = ({ type, id, ...data }) => {
       <div className='data'>
         <div>Node ID: <span>{id}</span></div>
         <div>Label: <span>{data.label}</span></div>
-        <div>Weight: <span>{data.weight}</span></div>
+        <div>Cost: <span>{data.cost}</span></div>
         <div>Shortest Source: <span>{data.shortest_source} </span></div>
       </div>
     )
@@ -19,7 +19,7 @@ const renderHoverPanel = ({ type, id, ...data }) => {
         <div>From: <span>{data.from}</span></div>
         <div>To: <span>{data.to}</span></div>
         <div>In Shortest Network: <span>{data.isPartOfShortestPath ? 'Yes' : 'No'} </span></div>
-        <div>Cost: <span>{data.cost} </span></div>
+        <div>Weight: <span>{data.weight} </span></div>
       </div>
     )
   }

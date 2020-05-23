@@ -18,7 +18,7 @@ const example_edge = {
   "edges(1...n)": [{
     "from": "<node.id>",
     "to": "<node.id>",
-    "cost": "<Number>",
+    "weight": "<Number>",
   }]
 };
 
@@ -43,7 +43,8 @@ export const EditPanel = ({ nodeData, edgeData, setNodeData, setEdgeData, toggle
       shortest_source: undefined,
       weight: undefined,
       color: undefined,
-      hover: undefined
+      hover: undefined,
+      cost: undefined,
     })), edges: edgeData.map(e => ({
       ...e,
       id: undefined,
